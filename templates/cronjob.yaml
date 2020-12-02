@@ -1,0 +1,45 @@
+{{- $fullname := include "auto-youtube-dl.fullname" . -}}
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ $fullname }}
+spec:
+  schedule: {{ .Values.schedule | quote }}
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+        {{- with .Values.podAnnotations }}
+          annotations:
+            {{- toYaml . | nindent 12 }}
+        {{- end }}
+        spec:
+          {{- with .Values.imagePullSecrets }}
+          imagePullSecrets:
+          {{- toYaml . | nindent 8 }}
+          {{- end }}
+          serviceAccountName: {{ include "auto-youtube-dl.serviceAccountName" . }}
+          securityContext:
+            {{- toYaml .Values.podSecurityContext | nindent 12 }}
+          containers:
+            - name: {{ .Chart.Name }}
+              securityContext:
+                {{- toYaml .Values.securityContext | nindent 16 }}
+              image: {{ .Values.image.name | quote }}
+              command:
+                - ./dl.sh
+                - {{ .Values.playlist | quote }}
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              env:
+                - name: DOWNLOAD_DIRECTORY
+                  value: /Downloads
+              volumeMounts:
+                - name: downloads
+                  mountPath: /Downloads
+              resources:
+                {{- toYaml .Values.resources | nindent 16 }}
+          restartPolicy: Never
+          volumes:
+            - name: downloads
+              persistentVolumeClaim:
+                claimName: {{ $fullname }}

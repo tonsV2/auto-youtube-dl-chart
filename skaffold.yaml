@@ -1,0 +1,9 @@
+apiVersion: skaffold/v2beta8
+kind: Config
+deploy:
+  kubeContext: default
+  helm:
+    releases:
+      - name: auto-youtube-dl
+        namespace: auto-youtube-dl
+        chartPath: .
