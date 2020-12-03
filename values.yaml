@@ -5,6 +5,9 @@
 playlist: "https://www.youtube.com/playlist?list=PLcBvX39C5rUEum5mHo9gbEj0fEGuUvdI4"
 schedule: 0 * * * *
 
+# Extra parameters or flags for the youtube-dl command
+youtubeDlOptions: ""
+
 image:
   name: tons/auto-youtube-dl
   pullPolicy: IfNotPresent

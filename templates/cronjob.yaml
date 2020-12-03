@@ -31,6 +31,8 @@ spec:
                 - {{ .Values.playlist | quote }}
               imagePullPolicy: {{ .Values.image.pullPolicy }}
               env:
+                - name: YOUTUBE_DL_OPTS
+                  value: {{ .Values.youtubeDlOptions | quote }}
                 - name: DOWNLOAD_DIRECTORY
                   value: /Downloads
               volumeMounts:
