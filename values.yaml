@@ -3,7 +3,8 @@
 # Declare variables to be passed into your templates.
 
 playlist: "https://www.youtube.com/playlist?list=PLcBvX39C5rUEum5mHo9gbEj0fEGuUvdI4"
-schedule: 0 * * * *
+
+schedule: "0 * * * *"
 
 # Extra parameters or flags for the youtube-dl command
 youtubeDlOptions: ""
