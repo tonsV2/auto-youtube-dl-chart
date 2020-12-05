@@ -2,7 +2,7 @@
 
 I use my Chromecast to stream music from YouTube.
 
-Often youtube remove videos form my playlists, due to various reasons, which is frustrating since I'm unable to recover those lost entries.
+Often youtube remove videos from my playlists, due to various reasons, which is frustrating since I'm unable to recover those lost entries.
 
 This chart will periodically (defaults to every 60 minutes) run [youtube-dl](https://github.com/ytdl-org/youtube-dl/) and download new videos added to the playlist specified by the `playlist` value.
 
