@@ -7,3 +7,7 @@ deploy:
       - name: auto-youtube-dl
         namespace: auto-youtube-dl
         chartPath: .
+        setValues:
+          playlist: "https://www.youtube.com/playlist?list=PLNiDb1qWsHSG2RpAZPrikxXL3G98eyohH"
+          image:
+            pullPolicy: Always
